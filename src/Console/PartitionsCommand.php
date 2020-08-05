@@ -6,6 +6,8 @@ namespace Reasno\HyperfMysqlPartition\Console;
 use Hyperf\Command\Command;
 use Reasno\HyperfMysqlPartition\Model\Partition;
 use Reasno\HyperfMysqlPartition\Schema\Schema;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
 class PartitionsCommand extends Command
 {
@@ -28,7 +30,20 @@ class PartitionsCommand extends Command
 
     public function __construct(string $name = null)
     {
-        parent::__construct('hyperf-mysql-partition');
+        parent::__construct('parition');
+    }
+
+    public function configure()
+    {
+        parent::configure();
+        $this->addArgument('action', InputArgument::OPTIONAL, 'Action to perform', 'list');
+        $this->addOption('database', 'd', InputOption::VALUE_OPTIONAL);
+        $this->addOption('table', 't', InputOption::VALUE_OPTIONAL);
+        $this->addOption('method', 'm', InputOption::VALUE_OPTIONAL);
+        $this->addOption('number', 'n', InputOption::VALUE_OPTIONAL);
+        $this->addOption('excludeFuture', 'e', InputOption::VALUE_OPTIONAL);
+        $this->addOption('column', 'c', InputOption::VALUE_OPTIONAL);
+        $this->addOption('partitions', 'p', InputOption::VALUE_OPTIONAL, 'partitions to act upon', '*');
     }
 
     /**
@@ -216,6 +231,16 @@ class PartitionsCommand extends Command
                 [$res]
             );
         }
+    }
+
+    private function option($value)
+    {
+        return $this->input->getOption($value);
+    }
+
+    private function argument($value)
+    {
+        return $this->input->getArgument($value);
     }
 
 }

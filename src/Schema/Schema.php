@@ -118,7 +118,7 @@ class Schema extends \Hyperf\Database\Schema\Schema
         $query .= "PARTITION `nov` VALUES LESS THAN (12),";
         $query .= "PARTITION `dec` VALUES LESS THAN (13)";
         $query .= ")";
-        DB::unprepared(DB::raw($query));
+        DB::unprepared(DB::raw($query)->__toString());
     }
 
     /**
@@ -160,7 +160,7 @@ class Schema extends \Hyperf\Database\Schema\Schema
         } else {
             $query .= ")";
         }
-        DB::unprepared(DB::raw($query));
+        DB::unprepared(DB::raw($query)->__toString());
     }
 
     /**
@@ -183,7 +183,7 @@ class Schema extends \Hyperf\Database\Schema\Schema
             $query .= ", PARTITION future VALUES LESS THAN (MAXVALUE)";
         }
         $query = trim(trim($query), ',') . ')';
-        DB::unprepared(DB::raw($query));
+        DB::unprepared(DB::raw($query)->__toString());
 
     }
 
@@ -224,7 +224,7 @@ class Schema extends \Hyperf\Database\Schema\Schema
         $query = "ALTER TABLE {$appendSchema}{$table} PARTITION BY LIST({$column}) (";
         $query .= self::implodePartitions($partitions);
         $query .= ')';
-        DB::unprepared(DB::raw($query));
+        DB::unprepared(DB::raw($query)->__toString());
     }
 
     /**
@@ -242,7 +242,7 @@ class Schema extends \Hyperf\Database\Schema\Schema
         self::assertSupport();
         $query = "ALTER TABLE {$appendSchema}{$table} PARTITION BY HASH({$hashColumn}) ";
         $query .= "PARTITIONS {$partitionsNumber};";
-        DB::unprepared(DB::raw($query));
+        DB::unprepared(DB::raw($query)->__toString());
     }
 
     /**
@@ -259,7 +259,7 @@ class Schema extends \Hyperf\Database\Schema\Schema
         self::assertSupport();
         $query = "ALTER TABLE {$appendSchema}{$table} PARTITION BY KEY() ";
         $query .= "PARTITIONS {$partitionsNumber};";
-        DB::unprepared(DB::raw($query));
+        DB::unprepared(DB::raw($query)->__toString());
     }
 
     /**
