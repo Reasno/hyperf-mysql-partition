@@ -26,6 +26,11 @@ class PartitionsCommand extends Command
      */
     protected $description = 'Manage of hyperf mysql partition';
 
+    public function __construct(string $name = null)
+    {
+        parent::__construct('hyperf-mysql-partition');
+    }
+
     /**
      * Execute the console command.
      *
