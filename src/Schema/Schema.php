@@ -49,7 +49,7 @@ class Schema extends \Hyperf\Database\Schema\Schema
             "SELECT `PARTITION_NAME`, `SUBPARTITION_NAME`, `PARTITION_ORDINAL_POSITION`, `TABLE_ROWS`, `PARTITION_METHOD` FROM `information_schema`.`PARTITIONS`"
             . " WHERE `TABLE_SCHEMA` = '" . $db
             . "' AND `TABLE_NAME` = '" . $table . "'"
-        ));
+        )->__toString());
     }
 
     /**
@@ -325,7 +325,7 @@ class Schema extends \Hyperf\Database\Schema\Schema
      */
     public static function optimizePartitions($table, $partitions)
     {
-        return DB::select(DB::raw("ALTER TABLE {$table} OPTIMIZE PARTITION " . implode(', ', $partitions)));
+        return DB::select(DB::raw("ALTER TABLE {$table} OPTIMIZE PARTITION " . implode(', ', $partitions))->__toString());
     }
 
     /**
@@ -336,7 +336,7 @@ class Schema extends \Hyperf\Database\Schema\Schema
      */
     public static function analyzePartitions($table, $partitions)
     {
-        return DB::select(DB::raw("ALTER TABLE {$table} ANALYZE PARTITION " . implode(', ', $partitions)));
+        return DB::select(DB::raw("ALTER TABLE {$table} ANALYZE PARTITION " . implode(', ', $partitions))->__toString());
     }
 
     /**
@@ -349,7 +349,7 @@ class Schema extends \Hyperf\Database\Schema\Schema
      */
     public static function repairPartitions($table, $partitions)
     {
-        return DB::select(DB::raw("ALTER TABLE {$table} REPAIR PARTITION " . implode(', ', $partitions)));
+        return DB::select(DB::raw("ALTER TABLE {$table} REPAIR PARTITION " . implode(', ', $partitions))->__toString());
     }
 
     /**
@@ -360,7 +360,7 @@ class Schema extends \Hyperf\Database\Schema\Schema
      */
     public static function checkPartitions($table, $partitions)
     {
-        return DB::select(DB::raw("ALTER TABLE {$table} CHECK PARTITION " . implode(', ', $partitions)));
+        return DB::select(DB::raw("ALTER TABLE {$table} CHECK PARTITION " . implode(', ', $partitions))->__toString());
     }
 
     /**
