@@ -33,19 +33,6 @@ class PartitionsCommand extends Command
         parent::__construct('parition');
     }
 
-    public function configure()
-    {
-        parent::configure();
-        $this->addArgument('action', InputArgument::OPTIONAL, 'Action to perform', 'list');
-        $this->addOption('database', 'd', InputOption::VALUE_OPTIONAL);
-        $this->addOption('table', 't', InputOption::VALUE_OPTIONAL);
-        $this->addOption('method', 'm', InputOption::VALUE_OPTIONAL);
-        $this->addOption('number', 'n', InputOption::VALUE_OPTIONAL);
-        $this->addOption('excludeFuture', 'e', InputOption::VALUE_OPTIONAL);
-        $this->addOption('column', 'c', InputOption::VALUE_OPTIONAL);
-        $this->addOption('partitions', 'p', InputOption::VALUE_OPTIONAL, 'partitions to act upon', '*');
-    }
-
     /**
      * Execute the console command.
      *
