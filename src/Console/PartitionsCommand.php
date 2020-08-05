@@ -17,7 +17,7 @@ class PartitionsCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'hyperf-mysql-partition
+    protected $signature = 'partition
                             {action : Action to perform} 
                             {--database=} {--table=} {--method=} {--number=} {--excludeFuture} {--column=} {--partitions=*}';
 
@@ -30,7 +30,7 @@ class PartitionsCommand extends Command
 
     public function __construct(string $name = null)
     {
-        parent::__construct('parition');
+        parent::__construct('partition');
     }
 
     /**
