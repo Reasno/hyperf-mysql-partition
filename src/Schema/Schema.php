@@ -64,7 +64,9 @@ class Schema extends \Hyperf\Database\Schema\Schema
     public static function havePartitioning()
     {
         if (!self::$already_checked && version_compare(self::version(), 5.1, '>=')) {
-            if (version_compare(self::version(), 5.6, '<')) {
+            if (version_compare(self::version(), 8.0, '>=')) {
+                self::$have_partitioning = true;
+            } else if (version_compare(self::version(), 5.6, '<')) {
                 if (DB::connection('default')->getPdo()->query("SHOW VARIABLES LIKE 'have_partitioning';")->fetchAll()) {
                     self::$have_partitioning = true;
                 }

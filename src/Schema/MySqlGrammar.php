@@ -46,7 +46,10 @@ class MySqlGrammar extends \Hyperf\Database\Query\Grammars\MySqlGrammar
      */
     private function compileDbName(Builder $query, $table)
     {
-        return $query->getDb() !== null ? ($this->wrap($query->getDb()).'.') : '';
+        if ($query instanceof QueryBuilder){
+            return $query->getDb() !== null ? ($this->wrap($query->getDb()).'.') : '';
+        }
+        return '';
     }
 
     /**
