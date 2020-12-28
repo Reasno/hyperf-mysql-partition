@@ -23,7 +23,7 @@
         "ext-swoole": ">=4.5",
         "hyperf/command": "^2.0.5",
         "hyperf/database": "^2.0.0",
-        "hyperf/db-connection": "^2.0.0,
+        "hyperf/db-connection": "^2.0.0",
         "hyperf/di": "^2.0.0"
     },
     "require-dev": {
